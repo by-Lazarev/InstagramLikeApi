@@ -1,7 +1,11 @@
 from passlib.context import CryptContext
 
-password_txt = CryptContext(schemes="bcrypt", deprecated="auto")
+password_context = CryptContext(schemes="bcrypt", deprecated="auto")
 
 
 def bcrypt(password: str):
-    return password_txt.hash(password)
+    return password_context.hash(password)
+
+
+def verify(hashed_password, given_password: str):
+    return password_context.verify(given_password, hashed_password)

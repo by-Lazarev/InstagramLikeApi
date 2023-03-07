@@ -28,3 +28,6 @@ def create_user(request: UserBase, db: Session = Depends(get_db)):
             detail="This name is already used, try the other one"
         )
     return db_user.create_user(request, db)
+# ---[READ]---
+# ---[UPDATE]---
+# ---[DELETE]---
