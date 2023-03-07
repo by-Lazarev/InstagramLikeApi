@@ -5,7 +5,7 @@ from db.models import DbUser
 from db import hash
 
 
-def create_user(db: Session, request: UserBase):
+def create_user(request: UserBase, db: Session):
     new_user = DbUser(
         username=request.username,
         email=request.email,
