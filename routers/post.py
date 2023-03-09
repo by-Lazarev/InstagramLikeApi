@@ -48,5 +48,10 @@ def upload_image(image: UploadFile = File(...), current_user: UserAuth = Depends
 def read_all_posts(db: Session = Depends(get_db)):
     return db_post.get_all(db)
 
+
 # ---[UPDATE]---
+
 # ---[DELETE]---
+@router.delete("/delete/{post_id}")
+def delete_post(post_id: int, db: Session = Depends(get_db), current_user: UserAuth = Depends(get_current_user)):
+    return db_post.delete_post(post_id, db, current_user.id)

@@ -23,8 +23,19 @@ class PostBase(BaseModel):
     creator_id: int
 
 
-class User(BaseModel): # For PostDisplay
+# For PostDisplay
+class User(BaseModel):
     username: str
+
+    class Config:
+        orm_mode = True
+
+
+# For PostDisplay
+class Comment(BaseModel):
+    text: str
+    username: str
+    timestamp: datetime
 
     class Config:
         orm_mode = True
@@ -37,6 +48,7 @@ class PostDisplay(BaseModel):
     caption: str
     timestamp: datetime
     user: User
+    comments: list[Comment]
 
     class Config:
         orm_mode = True
@@ -46,3 +58,9 @@ class UserAuth(BaseModel):
     id: int
     username: str
     email: str
+
+
+class CommentBase(BaseModel):
+    username: str
+    text: str
+    post_id: int
