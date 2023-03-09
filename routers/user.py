@@ -19,12 +19,12 @@ router = APIRouter(
 def create_user(request: UserBase, db: Session = Depends(get_db)):
     if db.query(DbUser).filter(DbUser.email == request.email).first():
         raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
             detail="You already have an account"
         )
     if db.query(DbUser).filter(DbUser.username == request.username).first():
         raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
             detail="This name is already used, try the other one"
         )
     return db_user.create_user(request, db)

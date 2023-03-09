@@ -15,6 +15,7 @@ class DbUser(Base):
 
     posts = relationship("DbPost", back_populates="user")
 
+
 class DbPost(Base):
     __tablename__ = "posts"
 
